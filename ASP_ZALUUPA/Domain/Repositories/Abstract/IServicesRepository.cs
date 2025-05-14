@@ -11,5 +11,10 @@ namespace ASP_ZALUUPA.Domain.Repositories.Abstract
         Task SaveServiceAsync(Service entity);
 
         Task DeleteServiceAsync(int id);
+
+        Task SaveServicePhotoAsync(ServicePhoto photo);
+        Task<List<ServicePhoto>> GetServicePhotosByServiceIdAsync(int serviceId);
+        Task DeleteServicePhotoAsync(int id);
+
     }
 }

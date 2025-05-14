@@ -21,6 +21,8 @@ namespace ASP_ZALUUPA.Domain.Entities
         [Display(Name = "Титульная картинка"), MaxLength(300)]
         public string? Photo {  get; set; }
 
+        public string PhotoUrl => $"https://localhost:7088/img/{Photo}";
+
 
         [Display(Name = "Тип услуги")]
         public ServiceTypeEnum? Type { get; set; }

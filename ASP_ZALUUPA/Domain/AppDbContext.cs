@@ -9,6 +9,7 @@ namespace ASP_ZALUUPA.Domain
     {
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<ServicePhoto> ServicePhotos { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -28,19 +29,6 @@ namespace ASP_ZALUUPA.Domain
                 NormalizedName = AdminName.ToUpper(),
             });
 
-            // добавляем нового IdentityUser в качестве администратора сайта
-            //builder.Entity<IdentityUser>().HasData(new IdentityUser()
-            //{
-            //    Id = userAdminId,
-            //    UserName = AdminName,
-            //    NormalizedUserName = AdminName.ToUpper(),
-            //    Email = "admin@admin.com",
-            //    NormalizedEmail = "admin@admin.com",
-            //    EmailConfirmed = true,
-            //    PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(new IdentityUser(), AdminName),
-            //    SecurityStamp = string.Empty,
-            //    PhoneNumberConfirmed = true
-            //});
 
             // Создаем заранее пользователя с нужными данными
             var adminUser = new IdentityUser

@@ -34,5 +34,32 @@ namespace ASP_ZALUUPA.Domain.Repositories.EntityFramework
             _context.Entry(new Service() { Id = id }).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
+
+
+        // фото
+
+        public async Task SaveServicePhotoAsync(ServicePhoto photo)
+        {
+            _context.ServicePhotos.Add(photo);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<ServicePhoto>> GetServicePhotosByServiceIdAsync(int serviceId)
+        {
+            return await _context.ServicePhotos
+                                 .Where(p => p.ServiceId == serviceId)
+                                 .ToListAsync();
+        }
+
+        public async Task DeleteServicePhotoAsync(int id)
+        {
+            var photo = await _context.ServicePhotos.FindAsync(id);
+            if (photo != null)
+            {
+                _context.ServicePhotos.Remove(photo);
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

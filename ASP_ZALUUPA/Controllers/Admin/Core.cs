@@ -1,6 +1,8 @@
 ﻿using ASP_ZALUUPA.Domain;
+using ASP_ZALUUPA.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace ASP_ZALUUPA.Controllers.Admin
@@ -48,5 +50,8 @@ namespace ASP_ZALUUPA.Controllers.Admin
 
             return JsonSerializer.Serialize(new {location = Path.Combine("/img/", img.FileName)});
         }
+
+        
+
     }
 }

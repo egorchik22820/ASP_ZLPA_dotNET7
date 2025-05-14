@@ -30,6 +30,7 @@ namespace ASP_ZALUUPA
 
             builder.Services.AddTransient<IServiceCategoriesRepository, EFServiceCategoriesRepository>();
             builder.Services.AddTransient<IServicesRepository, EFServicesRepository>();
+            builder.Services.AddTransient<IServicePhotoRepository, EFServicePhotoRepository>();
             builder.Services.AddTransient<DataManager>();
 
             // настраиваем Identity систему
