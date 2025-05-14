@@ -84,6 +84,31 @@ namespace ASP_ZALUUPA.Migrations
                     b.ToTable("ServiceCategories");
                 });
 
+            modelBuilder.Entity("ASP_ZALUUPA.Domain.Entities.ServicePhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ServicePhotos");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -113,7 +138,7 @@ namespace ASP_ZALUUPA.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "08c8da72-63f1-469e-a275-8abb845ff7cf",
+                            Id = "68a26189-0b6e-47c9-8c73-6a46fd3dc4df",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -211,17 +236,17 @@ namespace ASP_ZALUUPA.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d55b2acd-0231-44a8-939a-5f3d782ab95e",
+                            Id = "c8b774f3-8ac4-4256-b2cf-f5ceb13f088f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f5dc283f-9ba2-4463-b3e2-b094db18c3d3",
+                            ConcurrencyStamp = "d916143e-c531-4e2e-bc8f-d543950f32d2",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBkVtx60spXTStojP+Ztkr+QRY47qA3nukOQ9SS/IMBQfhnWdfgpkBU56W0WGvYehQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENipyZybAp3pHpaJNnnWiYWYHzNhIx5Nea1Q2vq1JgOnF4r0d1F1eTYp0sLFU5hnNg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e5ceac01-6376-45b6-bf60-ebf39bd1744a",
+                            SecurityStamp = "5fa1b06a-b3ea-43c5-8076-c03a84bd76c7",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -291,8 +316,8 @@ namespace ASP_ZALUUPA.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d55b2acd-0231-44a8-939a-5f3d782ab95e",
-                            RoleId = "08c8da72-63f1-469e-a275-8abb845ff7cf"
+                            UserId = "c8b774f3-8ac4-4256-b2cf-f5ceb13f088f",
+                            RoleId = "68a26189-0b6e-47c9-8c73-6a46fd3dc4df"
                         });
                 });
 
@@ -322,6 +347,15 @@ namespace ASP_ZALUUPA.Migrations
                         .HasForeignKey("ServiceCategoryId");
 
                     b.Navigation("ServiceCategory");
+                });
+
+            modelBuilder.Entity("ASP_ZALUUPA.Domain.Entities.ServicePhoto", b =>
+                {
+                    b.HasOne("ASP_ZALUUPA.Domain.Entities.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

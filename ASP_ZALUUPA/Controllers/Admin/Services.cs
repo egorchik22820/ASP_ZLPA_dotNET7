@@ -40,7 +40,7 @@ namespace ASP_ZALUUPA.Controllers.Admin
                 {
                     FileName = titleImageFile.FileName,
                     Data = imageData,
-                    Service = entity
+                    ServiceId = entity.Id
                 };
 
                 await _dataManager!.Services.SaveServicePhotoAsync(photoEntity);
