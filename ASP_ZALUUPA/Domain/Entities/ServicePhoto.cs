@@ -7,8 +7,5 @@
         public string? FileName { get; set; }
 
         public byte[] Data { get; set; } = null!;
-
-        public int? ServiceId { get; set; }
-        public Service? Service { get; set; }
     }
 }

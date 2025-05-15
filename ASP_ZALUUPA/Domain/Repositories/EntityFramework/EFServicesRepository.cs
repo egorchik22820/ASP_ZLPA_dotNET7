@@ -36,19 +36,21 @@ namespace ASP_ZALUUPA.Domain.Repositories.EntityFramework
         }
 
 
-        // фото
-
-        public async Task SaveServicePhotoAsync(ServicePhoto photo)
+        // Реализация методов для ServicePhoto
+        public async Task<ServicePhoto?> GetServicePhotoByIdAsync(int id)
         {
-            _context.ServicePhotos.Add(photo);
-            await _context.SaveChangesAsync();
+            return await _context.ServicePhotos.FindAsync(id);
         }
 
-        public async Task<List<ServicePhoto>> GetServicePhotosByServiceIdAsync(int serviceId)
+        public async Task<int> SaveServicePhotoAsync(ServicePhoto photo)
         {
-            return await _context.ServicePhotos
-                                 .Where(p => p.ServiceId == serviceId)
-                                 .ToListAsync();
+            if (photo.Id == 0)
+                _context.ServicePhotos.Add(photo);
+            else
+                _context.ServicePhotos.Update(photo);
+
+            await _context.SaveChangesAsync();
+            return photo.Id;
         }
 
         public async Task DeleteServicePhotoAsync(int id)

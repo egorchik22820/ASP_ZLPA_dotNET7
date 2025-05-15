@@ -26,5 +26,8 @@ namespace ASP_ZALUUPA.Domain.Entities
 
         [Display(Name = "Тип услуги")]
         public ServiceTypeEnum? Type { get; set; }
+
+        public int? ServicePhotoId { get; set; }
+        public ServicePhoto? ServicePhoto { get; set; }
     }
 }
